@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bcgig5knyp1wu"]
+
+[ext_resource type="Texture2D" uid="uid://xl2xuvk8fiwr" path="res://assets/temp_pond.png" id="1_4h7al"]
+[ext_resource type="Script" uid="uid://deqtkf58svah4" path="res://scripts/water.gd" id="2_hvmvx"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_hvmvx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4h7al"]
+size = Vector2(146.15598, 155.60703)
+
+[node name="Root" type="Node2D"]
+
+[node name="water" type="MeshInstance2D" parent="."]
+position = Vector2(-1513, 42942.996)
+scale = Vector2(-53113.016, 44527.824)
+mesh = SubResource("QuadMesh_hvmvx")
+texture = ExtResource("1_4h7al")
+
+[node name="Area2D" type="Area2D" parent="water"]
+position = Vector2(-0.018149968, -8.982071e-05)
+scale = Vector2(1.3479694, 0.92829335)
+script = ExtResource("2_hvmvx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="water/Area2D"]
+position = Vector2(0.011914281, 0.002395153)
+scale = Vector2(0.004000001, 0.004000001)
+shape = SubResource("RectangleShape2D_4h7al")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[connection signal="input_event" from="water/Area2D" to="water/Area2D" method="_on_input_event"]
